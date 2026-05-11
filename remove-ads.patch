@@ -90,7 +90,7 @@ diff --git a/Telegram/SourceFiles/history/history_item.cpp b/Telegram/SourceFile
 index 88c7bba933..f4cd38e741 100644
 --- a/Telegram/SourceFiles/history/history_item.cpp
 +++ b/Telegram/SourceFiles/history/history_item.cpp
-@@ -3120,16 +3120,7 @@ void HistoryItem::translationDone(LanguageId to, TextWithEntities result) {
+@@ -3128,16 +3128,7 @@ void HistoryItem::translationDone(LanguageId to, TextWithEntities result) {
  }
  
  bool HistoryItem::canReact() const {
@@ -103,7 +103,7 @@ index 88c7bba933..f4cd38e741 100644
 -			return (_flags & MessageFlag::ReactionsAllowed);
 -		}
 -	}
--	return true;
+-	return Data::CanSend(history()->peer, ChatRestriction::SendReactions, false);
 +    return false;
  }
  
@@ -768,12 +768,12 @@ diff --git a/Telegram/SourceFiles/ui/controls/compose_ai_button_factory.cpp b/Te
 index b4b7b28189..877d3f77b5 100644
 --- a/Telegram/SourceFiles/ui/controls/compose_ai_button_factory.cpp
 +++ b/Telegram/SourceFiles/ui/controls/compose_ai_button_factory.cpp
-@@ -35,30 +35,6 @@ base::options::toggle HideAiButtonOption({
+@@ -36,30 +36,6 @@ base::options::toggle HideAiButtonOption({
  bool HasEnoughLinesForAi(
  		not_null<Main::Session*> session,
  		not_null<Ui::InputField*> field) {
 -	if (HideAiButtonOption.value()
--		|| session->appConfig().aiComposeStyles().empty()) {
+-		|| session->data().aiComposeTones().list().empty()) {
 -		return false;
 -	}
 -	const auto &style = field->st().style;
