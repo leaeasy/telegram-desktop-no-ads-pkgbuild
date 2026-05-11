@@ -76,6 +76,13 @@ prepare() {
     cd tdesktop-$pkgver-full
     patch --forward --strip=1 -i "${srcdir}/remove-ads.patch"
     patch -Np1 -d Telegram/lib_base -i "$srcdir"/tdesktop-fix-minizip-includes.patch
+    # Fix missing cstdint includes in tgcalls headers
+    sed -i '/#include <memory>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/DirectConnectionChannel.h
+    sed -i '/#include <map>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/Instance.h
+    sed -i '/#include <vector>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/v2/SignalingConnection.h
+    sed -i '/#include "SignalingConnection.h"/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/v2/ExternalSignalingConnection.h
+    sed -i '/#include <cstdlib>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/third-party/json11.cpp
+
 }
 
 build() {
