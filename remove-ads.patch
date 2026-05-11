@@ -90,7 +90,7 @@ diff --git a/Telegram/SourceFiles/history/history_item.cpp b/Telegram/SourceFile
 index 88c7bba933..f4cd38e741 100644
 --- a/Telegram/SourceFiles/history/history_item.cpp
 +++ b/Telegram/SourceFiles/history/history_item.cpp
-@@ -3128,16 +3128,7 @@ void HistoryItem::translationDone(LanguageId to, TextWithEntities result) {
+@@ -3102,19 +3102,7 @@ void HistoryItem::translationDone(LanguageId to, TextWithEntities result) {
  }
  
  bool HistoryItem::canReact() const {
@@ -103,7 +103,10 @@ index 88c7bba933..f4cd38e741 100644
 -			return (_flags & MessageFlag::ReactionsAllowed);
 -		}
 -	}
--	return Data::CanSend(history()->peer, ChatRestriction::SendReactions, false);
+-	const auto peer = history()->peer;
+-	return (peer->isChat() || peer->isMegagroup())
+-	    ? Data::CanSend(peer, ChatRestriction::SendReactions, false)
+-		: true;
 +    return false;
  }
  
