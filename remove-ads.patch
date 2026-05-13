@@ -105,7 +105,7 @@ index 88c7bba933..f4cd38e741 100644
 -	}
 -	const auto peer = history()->peer;
 -	return (peer->isChat() || peer->isMegagroup())
--	    ? Data::CanSend(peer, ChatRestriction::SendReactions, false)
+-		? !peer->amRestricted(ChatRestriction::SendReactions)
 -		: true;
 +    return false;
  }
