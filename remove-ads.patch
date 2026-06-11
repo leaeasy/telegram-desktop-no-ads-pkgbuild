@@ -735,9 +735,9 @@ index 83dadb4e98..9465a3f5bd 100644
  
  	setupFrozenAccountBar();
 -	setupTopBarSuggestions();
- }
- 
- void Widget::setupSwipeBack() {
+ #ifdef _DEBUG
+	setupTopBarSuggestionTestHotkeys();
+ #endif // _DEBUG
 -- 
 2.53.0
 
@@ -791,7 +791,7 @@ index b4b7b28189..877d3f77b5 100644
 -		return false;
 -	}
 -	const auto &text = field->getLastText();
--	if (text.size() > MaxMessageSize) {
+-	if (text.size() > Data::PremiumLimits(session).messageLengthCurrent()) {
 -		return false;
 -	}
 -	for (const auto &ch : text) {

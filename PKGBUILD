@@ -1,8 +1,8 @@
 # https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop
 pkgname=telegram-desktop-no-ads
-pkgver=6.8.2
+pkgver=6.9.1
 _td_commit=51743dfd01dff6179e2d8f7095729caa4e2222e9
-pkgrel=2
+pkgrel=1
 pkgdesc='Patched Telegram Desktop client without ads'
 arch=('x86_64')
 url="https://desktop.telegram.org/"
@@ -62,20 +62,17 @@ conflicts=("telegram-desktop")
 source=(
     "https://github.com/telegramdesktop/tdesktop/releases/download/v${pkgver}/tdesktop-${pkgver}-full.tar.gz"
     "git+https://github.com/tdlib/td.git#tag=${_td_commit}"
-    tdesktop-fix-minizip-includes.patch
     "remove-ads.patch"
 )
 sha256sums=(
     "SKIP"
     "SKIP"
-    f94abffdf1c302ad1081e6278516ec38f0fd89b9672271f4d44885b3f09ac886
     a63a48fa678654fb6715c9e5d8846609844c506cfa83efb49a4164514e0b26d8
 )
 
 prepare() {
     cd tdesktop-$pkgver-full
     patch --forward --strip=1 -i "${srcdir}/remove-ads.patch"
-    patch -Np1 -d Telegram/lib_base -i "$srcdir"/tdesktop-fix-minizip-includes.patch
     # Fix missing cstdint includes in tgcalls headers
     sed -i '/#include <memory>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/DirectConnectionChannel.h
     sed -i '/#include <map>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/Instance.h
