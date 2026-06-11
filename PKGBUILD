@@ -1,8 +1,8 @@
 # https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop
 pkgname=telegram-desktop-no-ads
 pkgver=6.9.1
-_td_commit=51743dfd01dff6179e2d8f7095729caa4e2222e9
-pkgrel=1
+_td_commit=49b3bcbb6bfebf2ed44dd9f25102d2e1a94a58c4
+pkgrel=2
 pkgdesc='Patched Telegram Desktop client without ads'
 arch=('x86_64')
 url="https://desktop.telegram.org/"
@@ -20,10 +20,16 @@ depends=(
   'libdispatch'
   'libgcc'
   'libheif'
+  'libjpeg-turbo'
   'libjxl'
+  'libpipewire'
   'libstdc++'
+  'libxcb'
   'libxcomposite'
   'libxdamage'
+  'libxext'
+  'libxfixes'
+  'libxkbcommon'
   'libxrandr'
   'libxtst'
   'lz4'
@@ -33,6 +39,7 @@ depends=(
   'openssl'
   'pipewire'
   'protobuf'
+  'qt6-base'
   'qt6-imageformats'
   'qt6-svg'
   'qt6-wayland'
@@ -47,6 +54,7 @@ makedepends=(
   'git'
   'glib2-devel'
   'gobject-introspection'
+  'qt6-shadertools'
   'gperf'
   'libtg_owt'
   'microsoft-gsl'
@@ -73,13 +81,6 @@ sha256sums=(
 prepare() {
     cd tdesktop-$pkgver-full
     patch --forward --strip=1 -i "${srcdir}/remove-ads.patch"
-    # Fix missing cstdint includes in tgcalls headers
-    sed -i '/#include <memory>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/DirectConnectionChannel.h
-    sed -i '/#include <map>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/Instance.h
-    sed -i '/#include <vector>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/v2/SignalingConnection.h
-    sed -i '/#include "SignalingConnection.h"/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/v2/ExternalSignalingConnection.h
-    sed -i '/#include <cstdlib>/a #include <cstdint>' Telegram/ThirdParty/tgcalls/tgcalls/third-party/json11.cpp
-
 }
 
 build() {
