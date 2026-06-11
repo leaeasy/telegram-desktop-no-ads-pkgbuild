@@ -65,9 +65,9 @@ source=(
     "remove-ads.patch"
 )
 sha256sums=(
-    "SKIP"
-    "SKIP"
-    a63a48fa678654fb6715c9e5d8846609844c506cfa83efb49a4164514e0b26d8
+    'SKIP'
+    'SKIP'
+    '52d44a0a42ad3ecae15fd7d5389573c5b35997d9e4a5ac42c2648264533d7335'
 )
 
 prepare() {
