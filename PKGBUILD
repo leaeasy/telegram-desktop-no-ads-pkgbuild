@@ -17,7 +17,6 @@ depends=(
   'hunspell'
   'kcoreaddons'
   'libavif'
-  'libdispatch'
   'libgcc'
   'libheif'
   'libjpeg-turbo'
@@ -62,6 +61,13 @@ makedepends=(
   'python'
   'range-v3'
   'tl-expected'
+)
+optdepends=(
+  'geoclue: geoinformation support'
+  'crow-translate: translation provider'
+  'webkit2gtk-4.1: embedded browser features provided by webkit2gtk-4.1'
+  'webkitgtk-6.0: embedded browser features provided by webkitgtk-6.0 (Wayland only)'
+  'xdg-desktop-portal: desktop integration'
 )
 conflicts=("telegram-desktop")
 # Patches are from feature/remove-ads branch:
