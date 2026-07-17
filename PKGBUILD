@@ -1,12 +1,12 @@
 # https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop
 pkgname=telegram-desktop-no-ads
-pkgver=6.9.3
+pkgver=7.0.1
 _td_commit=51743dfd01dff6179e2d8f7095729caa4e2222e9
-pkgrel=5
-pkgdesc='Patched Telegram Desktop client without ads'
+pkgrel=1
+pkgdesc='Official Telegram Desktop client without ads'
 arch=('x86_64')
 url="https://desktop.telegram.org/"
-license=('GPL3')
+license=('GPL-3.0-or-later WITH OpenSSL-exception')
 depends=(
   'abseil-cpp'
   'ada'
@@ -65,8 +65,8 @@ makedepends=(
 optdepends=(
   'geoclue: geoinformation support'
   'crow-translate: translation provider'
-  'webkit2gtk-4.1: embedded browser features provided by webkit2gtk-4.1'
-  'webkitgtk-6.0: embedded browser features provided by webkitgtk-6.0 (Wayland only)'
+  'webkit2gtk-4.1: embedded browser features provided by webkit2gtk-4.1 (gtk3)'
+  'webkitgtk-6.0: embedded browser features provided by webkitgtk-6.0 (gtk4)'
   'xdg-desktop-portal: desktop integration'
 )
 conflicts=("telegram-desktop")
@@ -81,7 +81,7 @@ source=(
 sha256sums=(
     'SKIP'
     'SKIP'
-    '52d44a0a42ad3ecae15fd7d5389573c5b35997d9e4a5ac42c2648264533d7335'
+    '12f6a33dc64be680cb80283f39667225e096737a391ce790fab97a3ead6c6931'
 )
 
 prepare() {
