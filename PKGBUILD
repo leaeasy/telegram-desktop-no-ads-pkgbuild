@@ -102,6 +102,7 @@ build() {
     cmake --install td/build
 
     cmake -B build -S tdesktop-$pkgver-full -G Ninja \
+        -CMAKE_VERBOSE_MAKEFILE=ON \
         -DCMAKE_INSTALL_PREFIX="/usr" \
         -Dtde2e_DIR="$PWD/td/install/lib/cmake/tde2e" \
         -DCMAKE_BUILD_TYPE=Release \
