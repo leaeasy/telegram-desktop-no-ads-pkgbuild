@@ -2,7 +2,7 @@
 pkgname=telegram-desktop-no-ads
 pkgver=7.0.9
 _td_commit=022d60202e446ad1287b9fb68e687c8a0760788b
-pkgrel=2
+pkgrel=3
 pkgdesc='Official Telegram Desktop client without ads'
 arch=('x86_64')
 url="https://desktop.telegram.org/"
@@ -64,6 +64,7 @@ makedepends=(
   'python'
   'range-v3'
   'tl-expected'
+  'vulkan-headers'
 )
 optdepends=(
   'geoclue: geoinformation support'
