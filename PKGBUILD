@@ -90,10 +90,10 @@ sha256sums=(
 )
 
 prepare() {
-    cd wallet-engine-${_wallet_engine_ver}
+    cd $srcdir/wallet-engine-${_wallet_engine_ver}
     patch -Np1 -i "$srcdir"/wallet-engine.patch
 
-    cd tdesktop-$pkgver-full
+    cd $srcdir/tdesktop-$pkgver-full
     patch --forward --strip=1 -i "${srcdir}/remove-ads.patch"
 }
 
