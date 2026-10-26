@@ -55,10 +55,12 @@ depends=(
 makedepends=(
   'boost'
   'boost-libs'
+  'cargo'
   'cmake'
   'git'
   'glib2-devel'
   'gobject-introspection'
+  'just'
   'qt6-shadertools'
   'gperf'
   'libtg_owt'
